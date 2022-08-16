@@ -14,7 +14,7 @@ import Cart from './pages/Cart';
 
 const oktaAuth = new OktaAuth({
   issuer: 'https://dev-54842592.okta.com/app/dev-54842592_testapp1_1/exk66tgjs6xOWZS2K5d7/sso/saml',//'https://${yourOktaDomain}/oauth2/default',
-  clientId: 'http://www.okta.com/exk66tgjs6xOWZS2K5d7',
+  clientId: 'aln66tkwkcczZedRV5d7',
   redirectUri: window.location.origin + '/login/callback'
 });
 
