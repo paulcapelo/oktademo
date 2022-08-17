@@ -7,6 +7,7 @@ const Profile = () => {
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
+        console.log({ authState })
         if (!authState || !authState.isAuthenticated) {
             // When user isn't authenticated, forget any user info
             setUserInfo(null);

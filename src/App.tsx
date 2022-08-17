@@ -12,9 +12,16 @@ import Cart from './pages/Cart';
 
 
 
+// const oktaAuth = new OktaAuth({
+//   issuer: 'https://dev-54842592.okta.com/app/dev-54842592_testapp1_1/exk66tgjs6xOWZS2K5d7/sso/saml',//'https://${yourOktaDomain}/oauth2/default',
+//   clientId: 'aln66tkwkcczZedRV5d7',
+//   redirectUri: window.location.origin + '/login/callback'
+// });
+
 const oktaAuth = new OktaAuth({
-  issuer: 'https://dev-54842592.okta.com/app/dev-54842592_testapp1_1/exk66tgjs6xOWZS2K5d7/sso/saml',//'https://${yourOktaDomain}/oauth2/default',
-  clientId: 'aln66tkwkcczZedRV5d7',
+  issuer: 'https://dev-54842592.okta.com/oauth2/default',//'https://${yourOktaDomain}/oauth2/default',
+  // issuer: 'https://dev-54842592.okta.com/app/dev-54842592_testapp1_1/exk66tgjs6xOWZS2K5d7/sso/saml',//'https://${yourOktaDomain}/oauth2/default',
+  clientId: '0oa66xizhbdfEQ8AB5d7',
   redirectUri: window.location.origin + '/login/callback'
 });
 
@@ -33,8 +40,10 @@ function App() {
       <Route path="/cart" component={Cart} />
       {/* <SecureRoute path="/checkout" component={Checkout} /> */}
       <Route path="/login/callback" component={LoginCallback} />
+      <Route path="/profile" component={Profile} />
     </Security>
   );
 }
+//?code=pPzvBY-IzerE8qdQfeLSLKudDhfLj_dQZIPurlZ2NbI&state=VYLqQpD20S5KcUaujeydJ0vXEdXaOYnk3Nuwlja8hG4AePylxaKFEDg2k8SFBO70
 
 export default App;
