@@ -4,16 +4,16 @@ import { useOktaAuth } from '@okta/okta-react';
 
 const Profile = () => {
     const { authState, oktaAuth } = useOktaAuth();
-    const [userInfo, setUserInfo] = useState(null);
+    const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
         console.log({ authState })
         if (!authState || !authState.isAuthenticated) {
             // When user isn't authenticated, forget any user info
-            setUserInfo(null);
+            setUserInfo({});
         } else {
-            setUserInfo(authState?.idToken?.claims);
-            console.log({ authState })
+            setUserInfo(authState?.idToken?.claims ?? {});
+            console.log(authState?.idToken?.claims)
             // You can also get user information from the `/userinfo` endpoint
             /*oktaAuth.getUser().then((info) => {
               setUserInfo(info);
@@ -63,10 +63,11 @@ const Profile = () => {
                             const claimName = claimEntry[0];
                             const claimValue = claimEntry[1];
                             const claimId = `claim-${claimName}`;
+                            console.log(claimValue)
                             return (
                                 <tr key={claimName}>
                                     <td>{claimName}</td>
-                                    <td id={claimId}>{claimValue?.toString()}</td>
+                                    <td id={claimId}>{claimValue}</td>
                                 </tr>
                             );
                         })}
