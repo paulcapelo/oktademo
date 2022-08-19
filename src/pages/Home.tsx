@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { withOktaAuth, useOktaAuth } from '@okta/okta-react';
-
+import useDataUser from '../hooks/useDataUser';
 import logo from '../logo.svg';
 
 const Home = (props: any) => {
     const { oktaAuth, authState } = useOktaAuth();
-    console.log({ props, oktaAuth, authState })
+    const { data } = useDataUser();
     const [state, setstate] = useState(2)
     const login = async () => {
         await oktaAuth.signInWithRedirect();
@@ -26,23 +26,16 @@ const Home = (props: any) => {
         body = (
             <div className="Buttons">
                 <h2>Ingresar a:</h2>
-                <p>
-                    {('123'.includes(`${state}`)) &&
-                        <p>
-                            <button style={{ padding: 5 }} onClick={() => login()}>Ingresar a Middleware</button>
+                <p> </p>
+                {data.map((item: string, i) => {
+                    const it = item.split(",");
+                    return (
+                        <p key={i}>
+                            <button style={{ padding: 5 }} onClick={() => window.open(it[1])}>{it[0]}</button>
                         </p>
-                    }
-                    {('12'.includes(`${state}`)) &&
-                        <p>
-                            <button style={{ padding: 5 }} onClick={() => login()}>Ingresar a AIGMEXICO</button>
-                        </p>
-                    }
-                    {('1'.includes(`${state}`)) &&
-                        <p>
-                            <button style={{ padding: 5 }} onClick={() => login()}>Ingresar a AIGECUADOR</button>
-                        </p>
-                    }
-                </p>
+                    )
+                }
+                )}
                 <p></p>
                 <p></p>
                 <button style={{ backgroundColor: 'red', color: "#fff", padding: 10 }} onClick={() => logout()}>Cerrar Sesión</button>
@@ -73,4 +66,4 @@ const Home = (props: any) => {
     );
 };
 
-export default withOktaAuth(Home)
+export default Home
